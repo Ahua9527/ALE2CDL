@@ -16,6 +16,6 @@ python3 ale2cdl.py -i input.ale -o output_directory
 `-o`  Specify the `output_directory` path 
 
 #### Method two
-#### [Lazy Shortcuts](https://www.icloud.com/shortcuts/9f5f9d43a38040ebb26dbf3c9d88131d)
+#### [Lazy Shortcuts](https://www.icloud.com/shortcuts/bc535fa126714306bbc49591ee8c0c12)
 ###### `👆Click I need MacOS 12 Monterey +`
 ###### `The first use requires online installation of the corresponding dependencies and script files, which may be slow. Please wait patiently.`       
