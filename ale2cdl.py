@@ -36,8 +36,7 @@ def generate_xml_content(data):
     offset = SubElement(sop_node, 'Offset')
     offset.text = ' '.join(offset_values)
     power = SubElement(sop_node, 'Power')
-    power.text = ' '.join(power_values)
-
+    
     # 创建并填充SATNode
     sat_node = SubElement(color_correction, 'SATNode')
     saturation = SubElement(sat_node, 'Saturation')
@@ -70,9 +69,10 @@ def parse_ale_file(file_path):
     return data
 
 def generate_cdl_files(ale_file_path, output_directory):
-    """根据ALE文件生成CDL文件，并将它们存放在指定输出目录下的CDL_Files文件夹中。"""
-    # 在输出目录下创建CDL_Files文件夹，如果文件夹已存在，则不会引发异常。
-    final_output_directory = os.path.join(output_directory, 'CDL_Files')
+    """根据ALE文件生成CDL文件，并将它们存放在指定输出目录下的文件夹中。"""
+    # 获取输入文件的文件名（不带扩展名）以创建输出文件夹
+    ale_filename = os.path.splitext(os.path.basename(ale_file_path))[0]
+    final_output_directory = os.path.join(output_directory, ale_filename)
     os.makedirs(final_output_directory, exist_ok=True)
 
     # 解析ALE文件并生成CDL文件
@@ -94,12 +94,25 @@ if __name__ == '__main__':
     # 创建ArgumentParser的实例
     parser = argparse.ArgumentParser(description='Generate CDL files from an ALE file.')
     # 添加-i参数，用于指定输入文件的路径
-    parser.add_argument('-i', '--input', required=True, help='Path to the input ALE file.')
+    parser.add_argument('-i', '--input', help='Path to the input ALE file.')
     # 添加-o参数，用于指定输出目录的路径
-    parser.add_argument('-o', '--output', required=True, help='Directory where CDL files will be saved.')
+    parser.add_argument('-o', '--output', help='Directory where CDL files will be saved.')
     
     # 解析命令行参数
     args = parser.parse_args()
 
-    # 使用参数调用函数
-    generate_cdl_files(args.input, args.output)
+    # 设置默认输入和输出路径
+    default_input_file = "/path/to/default/input_file.ale"  # 请根据需要修改默认路径
+    default_output_dir = os.path.dirname(default_input_file)  # 默认输出目录为输入文件所在目录
+
+    # 如果命令行参数未提供输入路径，则使用默认路径
+    input_file_path = os.path.abspath(args.input) if args.input else default_input_file
+    # 如果命令行参数未提供输出路径，则使用输入文件所在目录
+    output_directory = os.path.abspath(args.output) if args.output else os.path.dirname(input_file_path)
+
+    # 确保输入文件存在
+    if not os.path.exists(input_file_path):
+        print(f"输入文件未找到：{input_file_path}")
+    else:
+        # 执行转换
+        generate_cdl_files(input_file_path, output_directory)

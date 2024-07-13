@@ -1,5 +1,5 @@
 # ALE2CDL
-从AvidLogExchange（ALE）文件格式中提取ASC CDL等级并将其写入ASC-CDL。遵守Pomfort规范
+从AvidLogExchange（ALE）文件格式中提取ASC CDL值并将其写入ASC-CDL。并遵守Pomfort规范
 
 ---
 

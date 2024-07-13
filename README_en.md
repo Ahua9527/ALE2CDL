@@ -4,18 +4,16 @@ Extract ASC CDL Grades from the AvidLogExchange (ALE) file format and write it t
 
 English | [中文](./README.md) 
 
-## Prerequisites
-`Python 3.9.6+`  
 
 ## How to use
 #### Method one
 ```console
 python3 ale2cdl.py -i input.ale -o output_directory
 ```
-`-s`  Specify the `ALE` input file path 
-`-o`  Specify the `output_directory` path 
+`-i ` Specify ALE input file path
+`-o ` Specify the output directory path. If the - o parameter is not specified, it will be saved to the input file directory by default
 
 #### Method two
-#### [Lazy Shortcuts](https://www.icloud.com/shortcuts/bc535fa126714306bbc49591ee8c0c12)
+#### [Lazy Shortcuts](https://www.icloud.com/shortcuts/b735e1c83eae499baaf0f93bb84036a5)
 ###### `👆Click I need MacOS 12 Monterey +`
 ###### `The first use requires online installation of the corresponding dependencies and script files, which may be slow. Please wait patiently.`       
