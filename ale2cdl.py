@@ -36,6 +36,7 @@ def generate_xml_content(data):
     offset = SubElement(sop_node, 'Offset')
     offset.text = ' '.join(offset_values)
     power = SubElement(sop_node, 'Power')
+    power.text = ' '.join(power_values)
     
     # 创建并填充SATNode
     sat_node = SubElement(color_correction, 'SATNode')
@@ -68,7 +69,7 @@ def parse_ale_file(file_path):
                     data.append(dict(zip(headers, values)))
     return data
 
-def generate_cdl_files(ale_file_path, output_directory):
+def generate_cdl_files( , output_directory):
     """根据ALE文件生成CDL文件，并将它们存放在指定输出目录下的文件夹中。"""
     # 获取输入文件的文件名（不带扩展名）以创建输出文件夹
     ale_filename = os.path.splitext(os.path.basename(ale_file_path))[0]
@@ -102,11 +103,11 @@ if __name__ == '__main__':
     args = parser.parse_args()
 
     # 设置默认输入和输出路径
-    default_input_file = "/path/to/default/input_file.ale"  # 请根据需要修改默认路径
+    # default_input_file = "/path/to/default/input_file.ale"  # 请根据需要修改默认路径
     default_output_dir = os.path.dirname(default_input_file)  # 默认输出目录为输入文件所在目录
 
-    # 如果命令行参数未提供输入路径，则使用默认路径
-    input_file_path = os.path.abspath(args.input) if args.input else default_input_file
+    # # 如果命令行参数未提供输入路径，则使用默认路径
+    # input_file_path = os.path.abspath(args.input) if args.input else default_input_file
     # 如果命令行参数未提供输出路径，则使用输入文件所在目录
     output_directory = os.path.abspath(args.output) if args.output else os.path.dirname(input_file_path)
 
